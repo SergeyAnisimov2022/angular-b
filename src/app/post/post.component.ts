@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ContentChild, Input, ElementRef, OnInit } from '@angular/core';
 import { Posto } from '../app.component';
 
 @Component({
@@ -6,9 +6,15 @@ import { Posto } from '../app.component';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent   {
+export class PostComponent implements OnInit {
 
-  @Input()  post!: Posto; //добавил восклицательный знак, иначе ошибка 
-  // нет инициализации
+  @Input()  post!: Posto; //добавил восклицательный знак, иначе ошибка // нет инициализации
+  @ContentChild('info', {static: true}) infoRef!: ElementRef //   !
  
+  constructor(){}
+
+  ngOnInit() {
+    console.log(this.infoRef.nativeElement)   
+  }
+  
 }
